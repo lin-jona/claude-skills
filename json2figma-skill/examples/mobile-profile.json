@@ -1,0 +1,649 @@
+{
+  "id": "0:0",
+  "type": "DOCUMENT",
+  "name": "Mobile Profile Example",
+  "documentColorProfile": "SRGB",
+  "children": [
+    {
+      "id": "0:1",
+      "type": "PAGE",
+      "name": "Profile",
+      "children": [
+        {
+          "id": "1:1",
+          "type": "FRAME",
+          "name": "Mobile Screen",
+          "x": 100,
+          "y": 100,
+          "width": 375,
+          "height": 812,
+          "layoutMode": "VERTICAL",
+          "primaryAxisAlignItems": "MIN",
+          "counterAxisAlignItems": "MIN",
+          "primaryAxisSizingMode": "FIXED",
+          "counterAxisSizingMode": "FIXED",
+          "fills": [
+            {
+              "type": "SOLID",
+              "color": {"r": 0.98, "g": 0.98, "b": 0.98}
+            }
+          ],
+          "children": [
+            {
+              "id": "1:2",
+              "type": "FRAME",
+              "name": "Header",
+              "layoutMode": "HORIZONTAL",
+              "primaryAxisAlignItems": "CENTER",
+              "counterAxisAlignItems": "CENTER",
+              "primaryAxisSizingMode": "FIXED",
+              "counterAxisSizingMode": "AUTO",
+              "layoutAlign": "STRETCH",
+              "paddingLeft": 20,
+              "paddingRight": 20,
+              "paddingTop": 60,
+              "paddingBottom": 20,
+              "itemSpacing": 16,
+              "fills": [
+                {
+                  "type": "SOLID",
+                  "color": {"r": 1, "g": 1, "b": 1}
+                }
+              ],
+              "children": [
+                {
+                  "id": "1:3",
+                  "type": "VECTOR",
+                  "name": "Back Button",
+                  "width": 24,
+                  "height": 24,
+                  "fills": [
+                    {
+                      "type": "SOLID",
+                      "color": {"r": 0.2, "g": 0.2, "b": 0.2}
+                    }
+                  ],
+                  "fillGeometry": [
+                    {
+                      "windingRule": "NONZERO",
+                      "data": "M 15 6 L 9 12 L 15 18"
+                    }
+                  ],
+                  "vectorPaths": [
+                    {
+                      "windingRule": "NONZERO",
+                      "data": "M 15 6 L 9 12 L 15 18"
+                    }
+                  ],
+                  "strokes": [
+                    {
+                      "type": "SOLID",
+                      "color": {"r": 0.2, "g": 0.2, "b": 0.2}
+                    }
+                  ],
+                  "strokeWeight": 2,
+                  "strokeCap": "ROUND",
+                  "strokeJoin": "ROUND"
+                },
+                {
+                  "id": "1:4",
+                  "type": "TEXT",
+                  "name": "Title",
+                  "characters": "Profile",
+                  "fontName": {"family": "Inter", "style": "Bold"},
+                  "fontSize": 20,
+                  "layoutGrow": 1,
+                  "fills": [
+                    {
+                      "type": "SOLID",
+                      "color": {"r": 0.1, "g": 0.1, "b": 0.1}
+                    }
+                  ]
+                },
+                {
+                  "id": "1:5",
+                  "type": "VECTOR",
+                  "name": "Settings Icon",
+                  "width": 24,
+                  "height": 24,
+                  "fills": [],
+                  "strokes": [
+                    {
+                      "type": "SOLID",
+                      "color": {"r": 0.2, "g": 0.2, "b": 0.2}
+                    }
+                  ],
+                  "strokeWeight": 2,
+                  "strokeCap": "ROUND",
+                  "strokeJoin": "ROUND",
+                  "fillGeometry": [
+                    {
+                      "windingRule": "NONZERO",
+                      "data": "M 12 2 C 17.523 2 22 6.477 22 12 C 22 17.523 17.523 22 12 22 C 6.477 22 2 17.523 2 12 C 2 6.477 6.477 2 12 2 Z M 12 8 C 9.791 8 8 9.791 8 12 C 8 14.209 9.791 16 12 16 C 14.209 16 16 14.209 16 12 C 16 9.791 14.209 8 12 8 Z"
+                    }
+                  ],
+                  "vectorPaths": [
+                    {
+                      "windingRule": "NONZERO",
+                      "data": "M 12 2 C 17.523 2 22 6.477 22 12 C 22 17.523 17.523 22 12 22 C 6.477 22 2 17.523 2 12 C 2 6.477 6.477 2 12 2 Z M 12 8 C 9.791 8 8 9.791 8 12 C 8 14.209 9.791 16 12 16 C 14.209 16 16 14.209 16 12 C 16 9.791 14.209 8 12 8 Z"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "1:6",
+              "type": "FRAME",
+              "name": "Content",
+              "layoutMode": "VERTICAL",
+              "primaryAxisAlignItems": "CENTER",
+              "counterAxisAlignItems": "MIN",
+              "primaryAxisSizingMode": "AUTO",
+              "counterAxisSizingMode": "AUTO",
+              "layoutAlign": "STRETCH",
+              "paddingLeft": 20,
+              "paddingRight": 20,
+              "paddingTop": 32,
+              "paddingBottom": 32,
+              "itemSpacing": 24,
+              "layoutGrow": 1,
+              "fills": [],
+              "children": [
+                {
+                  "id": "1:7",
+                  "type": "FRAME",
+                  "name": "Avatar Section",
+                  "layoutMode": "VERTICAL",
+                  "primaryAxisAlignItems": "CENTER",
+                  "counterAxisAlignItems": "CENTER",
+                  "primaryAxisSizingMode": "AUTO",
+                  "counterAxisSizingMode": "AUTO",
+                  "itemSpacing": 16,
+                  "fills": [],
+                  "children": [
+                    {
+                      "id": "1:8",
+                      "type": "ELLIPSE",
+                      "name": "Avatar",
+                      "width": 100,
+                      "height": 100,
+                      "fills": [
+                        {
+                          "type": "GRADIENT_LINEAR",
+                          "gradientHandlePositions": [
+                            {"x": 0, "y": 0},
+                            {"x": 1, "y": 1},
+                            {"x": 0, "y": 1}
+                          ],
+                          "gradientStops": [
+                            {"position": 0, "color": {"r": 0.6, "g": 0.4, "b": 1, "a": 1}},
+                            {"position": 1, "color": {"r": 0.4, "g": 0.6, "b": 1, "a": 1}}
+                          ]
+                        }
+                      ],
+                      "effects": [
+                        {
+                          "type": "DROP_SHADOW",
+                          "visible": true,
+                          "color": {"r": 0.5, "g": 0.5, "b": 1, "a": 0.3},
+                          "offset": {"x": 0, "y": 4},
+                          "radius": 16,
+                          "spread": 0,
+                          "blendMode": "NORMAL"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "1:9",
+                      "type": "TEXT",
+                      "name": "Name",
+                      "characters": "Sarah Johnson",
+                      "fontName": {"family": "Inter", "style": "Bold"},
+                      "fontSize": 24,
+                      "textAlignHorizontal": "CENTER",
+                      "fills": [
+                        {
+                          "type": "SOLID",
+                          "color": {"r": 0.1, "g": 0.1, "b": 0.1}
+                        }
+                      ]
+                    },
+                    {
+                      "id": "1:10",
+                      "type": "TEXT",
+                      "name": "Email",
+                      "characters": "sarah.j@example.com",
+                      "fontName": {"family": "Inter", "style": "Regular"},
+                      "fontSize": 14,
+                      "textAlignHorizontal": "CENTER",
+                      "fills": [
+                        {
+                          "type": "SOLID",
+                          "color": {"r": 0.5, "g": 0.5, "b": 0.5}
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "1:11",
+                  "type": "FRAME",
+                  "name": "Stats",
+                  "layoutMode": "HORIZONTAL",
+                  "primaryAxisAlignItems": "CENTER",
+                  "counterAxisAlignItems": "CENTER",
+                  "primaryAxisSizingMode": "FIXED",
+                  "counterAxisSizingMode": "AUTO",
+                  "layoutAlign": "STRETCH",
+                  "itemSpacing": 32,
+                  "paddingLeft": 32,
+                  "paddingRight": 32,
+                  "paddingTop": 24,
+                  "paddingBottom": 24,
+                  "fills": [
+                    {
+                      "type": "SOLID",
+                      "color": {"r": 1, "g": 1, "b": 1}
+                    }
+                  ],
+                  "cornerRadius": 16,
+                  "effects": [
+                    {
+                      "type": "DROP_SHADOW",
+                      "visible": true,
+                      "color": {"r": 0, "g": 0, "b": 0, "a": 0.05},
+                      "offset": {"x": 0, "y": 2},
+                      "radius": 8,
+                      "spread": 0,
+                      "blendMode": "NORMAL"
+                    }
+                  ],
+                  "children": [
+                    {
+                      "id": "1:12",
+                      "type": "FRAME",
+                      "name": "Stat 1",
+                      "layoutMode": "VERTICAL",
+                      "primaryAxisAlignItems": "CENTER",
+                      "counterAxisAlignItems": "CENTER",
+                      "primaryAxisSizingMode": "AUTO",
+                      "counterAxisSizingMode": "AUTO",
+                      "itemSpacing": 4,
+                      "fills": [],
+                      "children": [
+                        {
+                          "id": "1:13",
+                          "type": "TEXT",
+                          "name": "Value",
+                          "characters": "2.5K",
+                          "fontName": {"family": "Inter", "style": "Bold"},
+                          "fontSize": 20,
+                          "fills": [
+                            {
+                              "type": "SOLID",
+                              "color": {"r": 0.1, "g": 0.1, "b": 0.1}
+                            }
+                          ]
+                        },
+                        {
+                          "id": "1:14",
+                          "type": "TEXT",
+                          "name": "Label",
+                          "characters": "Followers",
+                          "fontName": {"family": "Inter", "style": "Regular"},
+                          "fontSize": 12,
+                          "fills": [
+                            {
+                              "type": "SOLID",
+                              "color": {"r": 0.6, "g": 0.6, "b": 0.6}
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "1:15",
+                      "type": "RECTANGLE",
+                      "name": "Divider",
+                      "width": 1,
+                      "height": 40,
+                      "fills": [
+                        {
+                          "type": "SOLID",
+                          "color": {"r": 0.95, "g": 0.95, "b": 0.95}
+                        }
+                      ]
+                    },
+                    {
+                      "id": "1:16",
+                      "type": "FRAME",
+                      "name": "Stat 2",
+                      "layoutMode": "VERTICAL",
+                      "primaryAxisAlignItems": "CENTER",
+                      "counterAxisAlignItems": "CENTER",
+                      "primaryAxisSizingMode": "AUTO",
+                      "counterAxisSizingMode": "AUTO",
+                      "itemSpacing": 4,
+                      "fills": [],
+                      "children": [
+                        {
+                          "id": "1:17",
+                          "type": "TEXT",
+                          "name": "Value",
+                          "characters": "1.2K",
+                          "fontName": {"family": "Inter", "style": "Bold"},
+                          "fontSize": 20,
+                          "fills": [
+                            {
+                              "type": "SOLID",
+                              "color": {"r": 0.1, "g": 0.1, "b": 0.1}
+                            }
+                          ]
+                        },
+                        {
+                          "id": "1:18",
+                          "type": "TEXT",
+                          "name": "Label",
+                          "characters": "Following",
+                          "fontName": {"family": "Inter", "style": "Regular"},
+                          "fontSize": 12,
+                          "fills": [
+                            {
+                              "type": "SOLID",
+                              "color": {"r": 0.6, "g": 0.6, "b": 0.6}
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "1:19",
+                      "type": "RECTANGLE",
+                      "name": "Divider",
+                      "width": 1,
+                      "height": 40,
+                      "fills": [
+                        {
+                          "type": "SOLID",
+                          "color": {"r": 0.95, "g": 0.95, "b": 0.95}
+                        }
+                      ]
+                    },
+                    {
+                      "id": "1:20",
+                      "type": "FRAME",
+                      "name": "Stat 3",
+                      "layoutMode": "VERTICAL",
+                      "primaryAxisAlignItems": "CENTER",
+                      "counterAxisAlignItems": "CENTER",
+                      "primaryAxisSizingMode": "AUTO",
+                      "counterAxisSizingMode": "AUTO",
+                      "itemSpacing": 4,
+                      "fills": [],
+                      "children": [
+                        {
+                          "id": "1:21",
+                          "type": "TEXT",
+                          "name": "Value",
+                          "characters": "342",
+                          "fontName": {"family": "Inter", "style": "Bold"},
+                          "fontSize": 20,
+                          "fills": [
+                            {
+                              "type": "SOLID",
+                              "color": {"r": 0.1, "g": 0.1, "b": 0.1}
+                            }
+                          ]
+                        },
+                        {
+                          "id": "1:22",
+                          "type": "TEXT",
+                          "name": "Label",
+                          "characters": "Posts",
+                          "fontName": {"family": "Inter", "style": "Regular"},
+                          "fontSize": 12,
+                          "fills": [
+                            {
+                              "type": "SOLID",
+                              "color": {"r": 0.6, "g": 0.6, "b": 0.6}
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "1:23",
+                  "type": "FRAME",
+                  "name": "Menu Items",
+                  "layoutMode": "VERTICAL",
+                  "primaryAxisAlignItems": "MIN",
+                  "counterAxisAlignItems": "MIN",
+                  "primaryAxisSizingMode": "AUTO",
+                  "counterAxisSizingMode": "AUTO",
+                  "layoutAlign": "STRETCH",
+                  "itemSpacing": 0,
+                  "fills": [
+                    {
+                      "type": "SOLID",
+                      "color": {"r": 1, "g": 1, "b": 1}
+                    }
+                  ],
+                  "cornerRadius": 16,
+                  "children": [
+                    {
+                      "id": "1:24",
+                      "type": "FRAME",
+                      "name": "Menu Item",
+                      "layoutMode": "HORIZONTAL",
+                      "primaryAxisAlignItems": "CENTER",
+                      "counterAxisAlignItems": "CENTER",
+                      "primaryAxisSizingMode": "FIXED",
+                      "counterAxisSizingMode": "AUTO",
+                      "layoutAlign": "STRETCH",
+                      "paddingLeft": 20,
+                      "paddingRight": 20,
+                      "paddingTop": 16,
+                      "paddingBottom": 16,
+                      "itemSpacing": 16,
+                      "fills": [],
+                      "children": [
+                        {
+                          "id": "1:25",
+                          "type": "RECTANGLE",
+                          "name": "Icon",
+                          "width": 24,
+                          "height": 24,
+                          "fills": [
+                            {
+                              "type": "SOLID",
+                              "color": {"r": 0.9, "g": 0.9, "b": 0.9}
+                            }
+                          ],
+                          "cornerRadius": 6
+                        },
+                        {
+                          "id": "1:26",
+                          "type": "TEXT",
+                          "name": "Label",
+                          "characters": "Edit Profile",
+                          "fontName": {"family": "Inter", "style": "Medium"},
+                          "fontSize": 16,
+                          "layoutGrow": 1,
+                          "fills": [
+                            {
+                              "type": "SOLID",
+                              "color": {"r": 0.2, "g": 0.2, "b": 0.2}
+                            }
+                          ]
+                        },
+                        {
+                          "id": "1:27",
+                          "type": "VECTOR",
+                          "name": "Chevron",
+                          "width": 20,
+                          "height": 20,
+                          "fills": [],
+                          "strokes": [
+                            {
+                              "type": "SOLID",
+                              "color": {"r": 0.7, "g": 0.7, "b": 0.7}
+                            }
+                          ],
+                          "strokeWeight": 2,
+                          "strokeCap": "ROUND",
+                          "strokeJoin": "ROUND",
+                          "fillGeometry": [
+                            {
+                              "windingRule": "NONZERO",
+                              "data": "M 8 6 L 12 10 L 8 14"
+                            }
+                          ],
+                          "vectorPaths": [
+                            {
+                              "windingRule": "NONZERO",
+                              "data": "M 8 6 L 12 10 L 8 14"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "1:28",
+                      "type": "RECTANGLE",
+                      "name": "Divider",
+                      "layoutAlign": "STRETCH",
+                      "height": 1,
+                      "fills": [
+                        {
+                          "type": "SOLID",
+                          "color": {"r": 0.95, "g": 0.95, "b": 0.95}
+                        }
+                      ]
+                    },
+                    {
+                      "id": "1:29",
+                      "type": "FRAME",
+                      "name": "Menu Item",
+                      "layoutMode": "HORIZONTAL",
+                      "primaryAxisAlignItems": "CENTER",
+                      "counterAxisAlignItems": "CENTER",
+                      "primaryAxisSizingMode": "FIXED",
+                      "counterAxisSizingMode": "AUTO",
+                      "layoutAlign": "STRETCH",
+                      "paddingLeft": 20,
+                      "paddingRight": 20,
+                      "paddingTop": 16,
+                      "paddingBottom": 16,
+                      "itemSpacing": 16,
+                      "fills": [],
+                      "children": [
+                        {
+                          "id": "1:30",
+                          "type": "RECTANGLE",
+                          "name": "Icon",
+                          "width": 24,
+                          "height": 24,
+                          "fills": [
+                            {
+                              "type": "SOLID",
+                              "color": {"r": 0.9, "g": 0.9, "b": 0.9}
+                            }
+                          ],
+                          "cornerRadius": 6
+                        },
+                        {
+                          "id": "1:31",
+                          "type": "TEXT",
+                          "name": "Label",
+                          "characters": "Privacy & Security",
+                          "fontName": {"family": "Inter", "style": "Medium"},
+                          "fontSize": 16,
+                          "layoutGrow": 1,
+                          "fills": [
+                            {
+                              "type": "SOLID",
+                              "color": {"r": 0.2, "g": 0.2, "b": 0.2}
+                            }
+                          ]
+                        },
+                        {
+                          "id": "1:32",
+                          "type": "VECTOR",
+                          "name": "Chevron",
+                          "width": 20,
+                          "height": 20,
+                          "fills": [],
+                          "strokes": [
+                            {
+                              "type": "SOLID",
+                              "color": {"r": 0.7, "g": 0.7, "b": 0.7}
+                            }
+                          ],
+                          "strokeWeight": 2,
+                          "strokeCap": "ROUND",
+                          "strokeJoin": "ROUND",
+                          "fillGeometry": [
+                            {
+                              "windingRule": "NONZERO",
+                              "data": "M 8 6 L 12 10 L 8 14"
+                            }
+                          ],
+                          "vectorPaths": [
+                            {
+                              "windingRule": "NONZERO",
+                              "data": "M 8 6 L 12 10 L 8 14"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "1:33",
+                  "type": "FRAME",
+                  "name": "Logout Button",
+                  "layoutMode": "HORIZONTAL",
+                  "primaryAxisAlignItems": "CENTER",
+                  "counterAxisAlignItems": "CENTER",
+                  "primaryAxisSizingMode": "FIXED",
+                  "counterAxisSizingMode": "AUTO",
+                  "layoutAlign": "STRETCH",
+                  "paddingLeft": 24,
+                  "paddingRight": 24,
+                  "paddingTop": 16,
+                  "paddingBottom": 16,
+                  "fills": [
+                    {
+                      "type": "SOLID",
+                      "color": {"r": 0.98, "g": 0.95, "b": 0.95}
+                    }
+                  ],
+                  "cornerRadius": 12,
+                  "children": [
+                    {
+                      "id": "1:34",
+                      "type": "TEXT",
+                      "name": "Label",
+                      "characters": "Log Out",
+                      "fontName": {"family": "Inter", "style": "Medium"},
+                      "fontSize": 16,
+                      "fills": [
+                        {
+                          "type": "SOLID",
+                          "color": {"r": 0.9, "g": 0.3, "b": 0.3}
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

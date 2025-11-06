@@ -1,0 +1,362 @@
+{
+  "id": "0:0",
+  "type": "DOCUMENT",
+  "name": "Dashboard Card Example",
+  "documentColorProfile": "SRGB",
+  "children": [
+    {
+      "id": "0:1",
+      "type": "PAGE",
+      "name": "Dashboard",
+      "children": [
+        {
+          "id": "1:1",
+          "type": "FRAME",
+          "name": "Stats Card",
+          "x": 100,
+          "y": 100,
+          "width": 320,
+          "layoutMode": "VERTICAL",
+          "primaryAxisAlignItems": "MIN",
+          "counterAxisAlignItems": "MIN",
+          "primaryAxisSizingMode": "AUTO",
+          "counterAxisSizingMode": "FIXED",
+          "paddingLeft": 24,
+          "paddingRight": 24,
+          "paddingTop": 24,
+          "paddingBottom": 24,
+          "itemSpacing": 20,
+          "fills": [
+            {
+              "type": "SOLID",
+              "color": {"r": 1, "g": 1, "b": 1}
+            }
+          ],
+          "cornerRadius": 12,
+          "effects": [
+            {
+              "type": "DROP_SHADOW",
+              "visible": true,
+              "color": {"r": 0, "g": 0, "b": 0, "a": 0.08},
+              "offset": {"x": 0, "y": 2},
+              "radius": 8,
+              "spread": 0,
+              "blendMode": "NORMAL"
+            }
+          ],
+          "children": [
+            {
+              "id": "1:2",
+              "type": "FRAME",
+              "name": "Header",
+              "layoutMode": "HORIZONTAL",
+              "primaryAxisAlignItems": "CENTER",
+              "counterAxisAlignItems": "CENTER",
+              "primaryAxisSizingMode": "FIXED",
+              "counterAxisSizingMode": "AUTO",
+              "layoutAlign": "STRETCH",
+              "itemSpacing": 12,
+              "fills": [],
+              "children": [
+                {
+                  "id": "1:3",
+                  "type": "RECTANGLE",
+                  "name": "Icon Background",
+                  "width": 48,
+                  "height": 48,
+                  "fills": [
+                    {
+                      "type": "SOLID",
+                      "color": {"r": 0.95, "g": 0.97, "b": 1}
+                    }
+                  ],
+                  "cornerRadius": 12
+                },
+                {
+                  "id": "1:4",
+                  "type": "FRAME",
+                  "name": "Title Section",
+                  "layoutMode": "VERTICAL",
+                  "primaryAxisAlignItems": "MIN",
+                  "counterAxisAlignItems": "MIN",
+                  "primaryAxisSizingMode": "AUTO",
+                  "counterAxisSizingMode": "AUTO",
+                  "itemSpacing": 4,
+                  "layoutGrow": 1,
+                  "fills": [],
+                  "children": [
+                    {
+                      "id": "1:5",
+                      "type": "TEXT",
+                      "name": "Title",
+                      "characters": "Total Revenue",
+                      "fontName": {"family": "Inter", "style": "Medium"},
+                      "fontSize": 14,
+                      "fills": [
+                        {
+                          "type": "SOLID",
+                          "color": {"r": 0.4, "g": 0.4, "b": 0.4}
+                        }
+                      ]
+                    },
+                    {
+                      "id": "1:6",
+                      "type": "TEXT",
+                      "name": "Period",
+                      "characters": "Last 30 days",
+                      "fontName": {"family": "Inter", "style": "Regular"},
+                      "fontSize": 12,
+                      "fills": [
+                        {
+                          "type": "SOLID",
+                          "color": {"r": 0.6, "g": 0.6, "b": 0.6}
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "1:7",
+                  "type": "RECTANGLE",
+                  "name": "Menu Icon",
+                  "width": 24,
+                  "height": 24,
+                  "fills": [
+                    {
+                      "type": "SOLID",
+                      "color": {"r": 0.8, "g": 0.8, "b": 0.8}
+                    }
+                  ],
+                  "cornerRadius": 4
+                }
+              ]
+            },
+            {
+              "id": "1:8",
+              "type": "FRAME",
+              "name": "Stats",
+              "layoutMode": "VERTICAL",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN",
+              "primaryAxisSizingMode": "AUTO",
+              "counterAxisSizingMode": "AUTO",
+              "itemSpacing": 8,
+              "fills": [],
+              "children": [
+                {
+                  "id": "1:9",
+                  "type": "TEXT",
+                  "name": "Value",
+                  "characters": "$45,231.89",
+                  "fontName": {"family": "Inter", "style": "Bold"},
+                  "fontSize": 32,
+                  "fills": [
+                    {
+                      "type": "SOLID",
+                      "color": {"r": 0.1, "g": 0.1, "b": 0.1}
+                    }
+                  ]
+                },
+                {
+                  "id": "1:10",
+                  "type": "FRAME",
+                  "name": "Change",
+                  "layoutMode": "HORIZONTAL",
+                  "primaryAxisAlignItems": "CENTER",
+                  "counterAxisAlignItems": "CENTER",
+                  "primaryAxisSizingMode": "AUTO",
+                  "counterAxisSizingMode": "AUTO",
+                  "itemSpacing": 6,
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "paddingTop": 4,
+                  "paddingBottom": 4,
+                  "fills": [
+                    {
+                      "type": "SOLID",
+                      "color": {"r": 0.9, "g": 0.98, "b": 0.92}
+                    }
+                  ],
+                  "cornerRadius": 6,
+                  "children": [
+                    {
+                      "id": "1:11",
+                      "type": "VECTOR",
+                      "name": "Arrow Up",
+                      "width": 12,
+                      "height": 12,
+                      "fills": [
+                        {
+                          "type": "SOLID",
+                          "color": {"r": 0.13, "g": 0.7, "b": 0.29}
+                        }
+                      ],
+                      "fillGeometry": [
+                        {
+                          "windingRule": "NONZERO",
+                          "data": "M 6 2 L 10 8 L 2 8 Z"
+                        }
+                      ],
+                      "vectorPaths": [
+                        {
+                          "windingRule": "NONZERO",
+                          "data": "M 6 2 L 10 8 L 2 8 Z"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "1:12",
+                      "type": "TEXT",
+                      "name": "Percentage",
+                      "characters": "+20.1%",
+                      "fontName": {"family": "Inter", "style": "Medium"},
+                      "fontSize": 12,
+                      "fills": [
+                        {
+                          "type": "SOLID",
+                          "color": {"r": 0.13, "g": 0.7, "b": 0.29}
+                        }
+                      ]
+                    },
+                    {
+                      "id": "1:13",
+                      "type": "TEXT",
+                      "name": "Comparison",
+                      "characters": "from last month",
+                      "fontName": {"family": "Inter", "style": "Regular"},
+                      "fontSize": 12,
+                      "fills": [
+                        {
+                          "type": "SOLID",
+                          "color": {"r": 0.5, "g": 0.5, "b": 0.5}
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "1:14",
+              "type": "RECTANGLE",
+              "name": "Divider",
+              "layoutAlign": "STRETCH",
+              "height": 1,
+              "fills": [
+                {
+                  "type": "SOLID",
+                  "color": {"r": 0.95, "g": 0.95, "b": 0.95}
+                }
+              ]
+            },
+            {
+              "id": "1:15",
+              "type": "FRAME",
+              "name": "Chart Placeholder",
+              "layoutMode": "HORIZONTAL",
+              "primaryAxisAlignItems": "CENTER",
+              "counterAxisAlignItems": "CENTER",
+              "primaryAxisSizingMode": "FIXED",
+              "counterAxisSizingMode": "FIXED",
+              "height": 120,
+              "fills": [
+                {
+                  "type": "GRADIENT_LINEAR",
+                  "gradientHandlePositions": [
+                    {"x": 0.5, "y": 0},
+                    {"x": 0.5, "y": 1},
+                    {"x": 0.5, "y": 0.5}
+                  ],
+                  "gradientStops": [
+                    {"position": 0, "color": {"r": 0.95, "g": 0.97, "b": 1, "a": 1}},
+                    {"position": 1, "color": {"r": 0.98, "g": 0.99, "b": 1, "a": 1}}
+                  ]
+                }
+              ],
+              "cornerRadius": 8,
+              "children": [
+                {
+                  "id": "1:16",
+                  "type": "TEXT",
+                  "name": "Chart Label",
+                  "characters": "Revenue Trend",
+                  "fontName": {"family": "Inter", "style": "Regular"},
+                  "fontSize": 12,
+                  "fills": [
+                    {
+                      "type": "SOLID",
+                      "color": {"r": 0.6, "g": 0.6, "b": 0.6}
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "1:17",
+              "type": "FRAME",
+              "name": "Footer",
+              "layoutMode": "HORIZONTAL",
+              "primaryAxisAlignItems": "CENTER",
+              "counterAxisAlignItems": "CENTER",
+              "primaryAxisSizingMode": "FIXED",
+              "counterAxisSizingMode": "AUTO",
+              "layoutAlign": "STRETCH",
+              "itemSpacing": 8,
+              "fills": [],
+              "children": [
+                {
+                  "id": "1:18",
+                  "type": "TEXT",
+                  "name": "View Details",
+                  "characters": "View detailed report",
+                  "fontName": {"family": "Inter", "style": "Medium"},
+                  "fontSize": 14,
+                  "fills": [
+                    {
+                      "type": "SOLID",
+                      "color": {"r": 0.4, "g": 0.5, "b": 1}
+                    }
+                  ]
+                },
+                {
+                  "id": "1:19",
+                  "type": "VECTOR",
+                  "name": "Arrow Right",
+                  "width": 16,
+                  "height": 16,
+                  "fills": [
+                    {
+                      "type": "SOLID",
+                      "color": {"r": 0.4, "g": 0.5, "b": 1}
+                    }
+                  ],
+                  "fillGeometry": [
+                    {
+                      "windingRule": "NONZERO",
+                      "data": "M 6 4 L 10 8 L 6 12"
+                    }
+                  ],
+                  "vectorPaths": [
+                    {
+                      "windingRule": "NONZERO",
+                      "data": "M 6 4 L 10 8 L 6 12"
+                    }
+                  ],
+                  "strokes": [
+                    {
+                      "type": "SOLID",
+                      "color": {"r": 0.4, "g": 0.5, "b": 1}
+                    }
+                  ],
+                  "strokeWeight": 2,
+                  "strokeCap": "ROUND",
+                  "strokeJoin": "ROUND"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
