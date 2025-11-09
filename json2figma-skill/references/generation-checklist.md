@@ -54,10 +54,14 @@
 6. 在 Figma 开发模式中粘贴并导入，检查图层结构与视觉效果。
 
 ## 常见问题排查
-- **文本不显示**：确认 `fontName` 与 `loadFontAsync` 字重一致；检查 `characters` 是否为空字符串。
-- **自动布局失效**：留意 `layoutMode`、`primaryAxisSizingMode` 是否同时设置，且 `padding*` 字段非负。
-- **元素宽度只有 100px**：检查是否使用了 `primaryAxisSizingMode: "FIXED"` 但没有显式 `width` 或 `layoutAlign: "STRETCH"`。
-- **导入时报错 counterAxisAlignItems**：检查是否使用了无效的 `"STRETCH"` 值，应改为 `"MIN"` / `"CENTER"` / `"MAX"` / `"BASELINE"`。
-- **子元素堆叠在左上角**：检查 auto-layout 是否正确启用，以及 sizing 模式配置。
-- **颜色异常**：RGB 超出 0-1 区间会被截断，建议使用小数四位以内精度。
-- **SVG 未更新**：`type: "SVG"` 节点会比对内容哈希；若需强制刷新，更新 `source` 字符串或移除旧节点。
+
+遇到问题时，请参考以下文档获取详细解决方案：
+
+- **文本不显示** → [faq-best-practices.md#4-文本节点字体显示不正确](faq-best-practices.md)
+- **自动布局失效** → [faq-best-practices.md#6-auto-layout-不生效](faq-best-practices.md)
+- **元素宽度只有 100px** → [faq-best-practices.md#61-元素宽度只有-100px](faq-best-practices.md)
+- **VECTOR 节点空白** → [faq-best-practices.md#2-vector-节点显示为空白](faq-best-practices.md)
+- **颜色异常** → [faq-best-practices.md#2-颜色值规范](faq-best-practices.md)
+- **路径解析失败** → [faq-best-practices.md#21-vector-路径解析失败](faq-best-practices.md)
+
+完整的最佳实践和调试技巧请参考 [faq-best-practices.md](faq-best-practices.md)。

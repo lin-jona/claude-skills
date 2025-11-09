@@ -39,6 +39,56 @@
   }]
   ```
 
+### 2.1 VECTOR 路径解析失败 - Arc 命令错误
+
+**错误信息：**
+```
+Failed to set vector properties: in set_vectorPaths: Failed to convert path. Invalid command at A
+```
+
+**原因：**
+
+Figma 的 vectorPaths API 不支持 SVG 的弧形命令 (Arc command `A`)。Figma 仅支持以下命令：
+- `M x y` - 绝对"移动到"命令
+- `L x y` - 绝对"画线到"命令
+- `Q x0 y0 x y` - 绝对"二次贝塞尔曲线"命令
+- `C x0 y0 x1 y1 x y` - 绝对"三次贝塞尔曲线"命令
+- `Z` - "闭合路径"命令
+
+**不支持的命令：**
+- ❌ `A` (arc) - 弧形命令
+- ❌ `S`, `T` - 平滑曲线简写命令
+- ❌ `H`, `V` - 水平/垂直线命令
+- ❌ 小写命令（相对坐标）- 如 `m`, `l`, `c`, `q` 等
+
+**解决方案：**
+
+使用提供的转换脚本自动转换路径：
+
+```bash
+# 转换单个路径
+python scripts/convert_svg_paths.py "M 12 2 A 10 10 0 1 1 12 22 Z"
+
+# 转换整个 JSON 文件
+python scripts/convert_svg_paths.py --file examples/your-file.json --output examples/your-file-fixed.json
+```
+
+**手动转换示例：**
+
+对于圆形，可以使用四段三次贝塞尔曲线来近似：
+
+```json
+// 原始路径（使用 Arc 命令）
+"data": "M 12 2 A 10 10 0 1 1 12 22 A 10 10 0 1 1 12 2 Z"
+
+// 转换后（使用 Cubic Bezier）
+"data": "M 12 2 C 17.523 2 22 6.477 22 12 C 22 17.523 17.523 22 12 22 C 6.477 22 2 17.523 2 12 C 2 6.477 6.477 2 12 2 Z"
+```
+
+**参考资源：**
+- [vector-construction.md](vector-construction.md) - 详细的路径构造指南
+- [Figma VectorPath API 文档](https://developers.figma.com/docs/plugins/api/properties/VectorPath-data/)
+
 ### 3. GROUP 节点在 auto-layout 中位置不对
 
 **原因：**
@@ -84,6 +134,111 @@ GROUP 节点不支持 auto-layout 属性,在 auto-layout 容器中会被视为�
 - 是否设置了 `primaryAxisAlignItems` 和 `counterAxisAlignItems`
 - 子节点是否正确设置了 `layoutAlign` 和 `layoutGrow`
 - 确保节点类型支持 auto-layout（FRAME、COMPONENT、INSTANCE）
+
+### 6.1 元素宽度只有 100px（Auto-Layout 宽度问题）
+
+**现象：**
+
+导入后，某些元素（如 Header、Footer、Button、Divider）的宽度只有 100px，而不是填充父容器的宽度。
+
+**原因：**
+
+当元素使用 `primaryAxisSizingMode: "FIXED"` 但没有显式指定 `width` 属性，且缺少 `layoutAlign: "STRETCH"` 时，Figma 会使用默认宽度 100px。
+
+**解决方案：**
+
+有三种方法可以解决：
+
+1. **添加 layoutAlign: "STRETCH"**（推荐）：
+   ```json
+   {
+     "type": "FRAME",
+     "name": "Header",
+     "layoutMode": "HORIZONTAL",
+     "primaryAxisSizingMode": "FIXED",
+     "layoutAlign": "STRETCH"  // ← 添加此行
+   }
+   ```
+
+2. **显式指定宽度**：
+   ```json
+   {
+     "type": "FRAME",
+     "name": "Header",
+     "layoutMode": "HORIZONTAL",
+     "primaryAxisSizingMode": "FIXED",
+     "width": 375  // ← 添加此行
+   }
+   ```
+
+3. **改用 AUTO 模式**：
+   ```json
+   {
+     "type": "FRAME",
+     "name": "Header",
+     "layoutMode": "HORIZONTAL",
+     "primaryAxisSizingMode": "AUTO"  // ← 改为 AUTO
+   }
+   ```
+
+**常见需要 layoutAlign: "STRETCH" 的元素：**
+- Header / Footer 容器
+- 表单字段容器
+- 按钮（需要填充父容器宽度时）
+- 分隔线（Divider / RECTANGLE）
+- 菜单项
+
+**验证脚本：**
+
+使用提供的验证脚本检查：
+
+```bash
+python scripts/validate_json.py examples/your-file.json
+```
+
+### 6.2 counterAxisAlignItems 验证错误
+
+**错误信息：**
+```
+Property "counterAxisAlignItems" failed validation:
+Invalid enum value. Expected 'MIN' | 'MAX' | 'CENTER' | 'BASELINE', received 'STRETCH'
+```
+
+**原因：**
+
+`counterAxisAlignItems` 不支持 `"STRETCH"` 值。这是一个常见的误解，因为 CSS Flexbox 的 `align-items` 支持 `stretch`。
+
+**有效值：**
+- `"MIN"` - 对齐到起始位置（左/上）
+- `"MAX"` - 对齐到结束位置（右/下）
+- `"CENTER"` - 居中对齐
+- `"BASELINE"` - 基线对齐（主要用于文本）
+
+**解决方案：**
+
+如果想让子元素在副轴方向填充满容器，应该：
+
+1. 在**容器**上设置 `counterAxisAlignItems: "MIN"` (或其他有效值)
+2. 在**子元素**上设置 `layoutAlign: "STRETCH"`
+
+**错误示例：**
+```json
+{
+  "layoutMode": "VERTICAL",
+  "counterAxisAlignItems": "STRETCH"  // ❌ 错误
+}
+```
+
+**正确示例：**
+```json
+{
+  "layoutMode": "VERTICAL",
+  "counterAxisAlignItems": "MIN",  // ✅ 正确：容器使用 MIN
+  "children": [{
+    "layoutAlign": "STRETCH"  // ✅ 正确：子元素使用 STRETCH
+  }]
+}
+```
 
 ### 7. 圆角不显示
 

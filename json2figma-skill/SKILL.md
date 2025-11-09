@@ -23,7 +23,8 @@ description: 根据需求生成可供 json2figma 插件导入的 UI Demo JSON。
    - 检查所有 `counterAxisAlignItems` 是否使用了无效的 `"STRETCH"` 值
    - 检查所有 `primaryAxisSizingMode: "FIXED"` 的元素是否有显式 `width` 或 `layoutAlign: "STRETCH"`
    - 检查需要填充父容器的子元素（Header、Footer、Divider、Button 等）是否添加了 `layoutAlign: "STRETCH"`
-7. **交付**：返回 JSON（必要时附引用说明），提醒用户将结果粘贴到插件 UI 中。
+   - **推荐使用验证脚本**：`python scripts/validate_json.py your-file.json`
+7. **交付**：返回 JSON（必要时附引用说明），提醒用户将结果粘贴到插件 UI 中，并建议运行验证脚本。
 
 ## 核心参考文档
 
@@ -102,52 +103,21 @@ description: 根据需求生成可供 json2figma 插件导入的 UI Demo JSON。
 - 必要时附带简要导入步骤提醒（粘贴到插件面板、点击 Render JSON）。
 
 ## 校验清单
-- 按 [references/generation-checklist.md](references/generation-checklist.md) 逐项核对：层级、布局、颜色、文本、JSON 语法。
-- 重点检查：
-  - 是否遗漏 `fontName` 或 `characters`。
-  - 自动布局字段是否成对出现。
-  - `children` 是否始终为数组。
-  - 颜色值是否在 0-1 范围内。
-  - VECTOR 节点是否同时设置了 `fillGeometry` 和 `vectorPaths`。
-  - 路径数据命令后是否有空格（如 `"M 0 0"` 而非 `"M0 0"`）。
-  - GROUP 节点是否避免使用 auto-layout 属性。
-  - 样式 ID 是否设置为空字符串 `""` 或有效 ID。
+生成 JSON 后，按 [references/generation-checklist.md](references/generation-checklist.md) 逐项核对。
 
-### ⚠️ Auto-Layout 专项检查（必须执行）
-生成 JSON 后，**必须**执行以下验证：
+### ⚠️ 关键验证（必须执行）
+1. **Auto-Layout 配置** - 检查 `counterAxisAlignItems` 和 `primaryAxisSizingMode` 配置
+2. **颜色范围** - 确保 RGB 值在 0-1 范围内
+3. **必需字段** - TEXT 节点的 `fontName`/`characters`，VECTOR 节点的 `fillGeometry`/`vectorPaths`
 
-1. **检查无效的 counterAxisAlignItems**：
-   ```bash
-   # 搜索是否有无效的 "STRETCH" 值
-   grep '"counterAxisAlignItems": "STRETCH"' your-file.json
-   ```
-   如果找到，必须改为 `"MIN" | "CENTER" | "MAX" | "BASELINE"`
-
-2. **检查 primaryAxisSizingMode: "FIXED" 配置**：
-   ```bash
-   # 列出所有使用 FIXED 的元素
-   grep -B5 -A5 '"primaryAxisSizingMode": "FIXED"' your-file.json
-   ```
-   对每个结果，确认以下之一：
-   - [ ] 有显式的 `width` 属性（或 `height`）
-   - [ ] 有 `layoutAlign: "STRETCH"` 属性
-   - [ ] 或改用 `primaryAxisSizingMode: "AUTO"`
-
-3. **检查常见需要 layoutAlign 的元素**：
-   - [ ] Header / Footer 容器
-   - [ ] 表单字段容器
-   - [ ] 按钮（需要填充父容器宽度时）
-   - [ ] 分隔线（Divider）
-   - [ ] 菜单项
-
-**快速验证命令**：
+**推荐使用验证脚本**：
 ```bash
-# 一键检查两个常见问题
-grep -n '"counterAxisAlignItems": "STRETCH"' your-file.json && \
-grep -n '"primaryAxisSizingMode": "FIXED"' your-file.json | grep -v '"width"' | grep -v '"layoutAlign"'
+python scripts/validate_json.py your-file.json
 ```
 
-详细规则和示例请参考 [figma-api-schema.md](references/figma-api-schema.md) 的 "Auto-Layout 关键规则" 章节。
+详细检查项和常见问题解决方案请参考：
+- [generation-checklist.md](references/generation-checklist.md) - 完整检查清单
+- [faq-best-practices.md](references/faq-best-practices.md) - 常见问题排查
 
 ## 关键注意事项
 
@@ -160,30 +130,24 @@ grep -n '"primaryAxisSizingMode": "FIXED"' your-file.json | grep -v '"width"' | 
 
 ### 颜色规范
 - RGB 值必须在 0-1 范围内（不是 0-255）
-- 渐变需要 3 个 `gradientHandlePositions` 点
-- 阴影颜色需要包含 alpha 通道（RGBA）
+- 详细说明请参考 [faq-best-practices.md](references/faq-best-practices.md#2-颜色值规范)
 
 ### Auto-Layout 配置
 - `layoutMode`: `"NONE"` | `"HORIZONTAL"` | `"VERTICAL"`
-- 启用 auto-layout 时必须设置 `primaryAxisAlignItems` 和 `counterAxisAlignItems`
-- 子节点可使用 `layoutAlign`, `layoutGrow`, `layoutPositioning`
+- 启用时必须设置 `primaryAxisAlignItems` 和 `counterAxisAlignItems`
 
-**⚠️ 关键规则（必须遵守）**：
-1. **`counterAxisAlignItems` 没有 `"STRETCH"` 值** - 使用 `"MIN" | "CENTER" | "MAX" | "BASELINE"`
-2. **`primaryAxisSizingMode: "FIXED"` 必须配合以下之一**：
-   - 显式的 `width` 属性（或 `height`）
-   - `layoutAlign: "STRETCH"` 属性
-   - 或改用 `primaryAxisSizingMode: "AUTO"`
+**⚠️ 关键规则**：
+1. `counterAxisAlignItems` 只能使用 `"MIN" | "CENTER" | "MAX" | "BASELINE"`（不支持 `"STRETCH"`）
+2. `primaryAxisSizingMode: "FIXED"` 必须配合显式 `width` 或 `layoutAlign: "STRETCH"`
 
-   否则会导致默认宽度 100px 的布局错误！
-
-详细说明和示例请参考 [figma-api-schema.md](references/figma-api-schema.md) 的 "Auto-Layout 关键规则" 章节。
+详细说明请参考：
+- [figma-api-schema.md](references/figma-api-schema.md) - 完整 API 参考
+- [faq-best-practices.md](references/faq-best-practices.md#61-元素宽度只有-100px) - 常见问题解决
 
 ### 矢量路径规则
 - 路径命令后必须有空格：`"M 50 0 L 100 100 Z"`
 - 同时设置 `fillGeometry` 和 `vectorPaths`
-- 使用正确的 `windingRule`：`"NONZERO"` 或 `"EVENODD"`
-- 路径坐标相对于节点左上角 (0,0)
+- 详细说明请参考 [vector-construction.md](references/vector-construction.md)
 
 ## 示例
 - **示例 1：项目状态卡片**  
@@ -193,9 +157,60 @@ grep -n '"primaryAxisSizingMode": "FIXED"' your-file.json | grep -v '"width"' | 
 - **示例 2：营销落地页 Hero**  
   步骤：创建 1440×900 顶层 Frame → 设置深色背景 → 添加标题、副标题、行动按钮 → 在按钮 Frame 中确保填充与文本颜色对比明显。
 
+## 验证和转换工具
+
+为了确保生成的 JSON 能够成功导入 Figma，提供了以下验证和转换脚本：
+
+### 验证脚本 (validate_json.py)
+
+自动检查 JSON 文件中的常见问题：
+
+```bash
+# 验证单个文件
+python scripts/validate_json.py your-file.json
+
+# 验证多个文件
+python scripts/validate_json.py examples/*.json
+```
+
+**检查项目：**
+- ✅ 无效的 `counterAxisAlignItems` 值
+- ✅ 缺少 `layoutAlign` 的 `primaryAxisSizingMode: "FIXED"` 元素
+- ✅ 不支持的 SVG 路径命令（Arc、相对命令等）
+- ✅ 常见配置错误
+
+### SVG 路径转换脚本 (convert_svg_paths.py)
+
+自动将 SVG 路径转换为 Figma 兼容格式：
+
+```bash
+# 转换单个路径字符串
+python scripts/convert_svg_paths.py "M 12 2 A 10 10 0 1 1 12 22 Z"
+
+# 转换 JSON 文件中的所有路径
+python scripts/convert_svg_paths.py --file your-file.json --output your-file-fixed.json
+```
+
+**转换功能：**
+- Arc 命令 (A) → Cubic Bezier (C)
+- 相对命令 → 绝对命令
+- H/V 命令 → L 命令
+- S/T 命令 → C/Q 命令
+
+### 推荐工作流程
+
+1. 生成 JSON 文件
+2. 运行验证脚本：`python scripts/validate_json.py your-file.json`
+3. 如有路径问题，运行转换脚本：`python scripts/convert_svg_paths.py --file your-file.json --output fixed.json`
+4. 再次验证：`python scripts/validate_json.py fixed.json`
+5. 导入到 Figma
+
+详细使用说明请参考 [scripts/README.md](scripts/README.md)。
+
 ## 附注
 - 若用户要求使用非 Inter 字体，需要提示对方先在插件控制器中新增 `figma.loadFontAsync`，否则无法导入。
 - 若 UI 包含 SVG 图标，可建议将 SVG 字符串嵌入 `type: "SVG"` 节点的 `source` 字段，并注明须确认哈希更新逻辑。
+- **强烈建议在交付 JSON 前运行验证脚本**，可以避免大部分导入错误。
 
 ## 快速参考
 
@@ -287,16 +302,12 @@ grep -n '"primaryAxisSizingMode": "FIXED"' your-file.json | grep -v '"width"' | 
 
 ### 故障排查快速指南
 
-| 问题 | 可能原因 | 解决方案 |
-|------|---------|---------|
-| 节点不显示 | 缺少 fills | 添加 `fills` 数组 |
-| VECTOR 空白 | 缺少 fillGeometry | 同时设置 `fillGeometry` 和 `vectorPaths` |
-| 文本不显示 | 字体未加载 | 使用 Inter 字体或预加载其他字体 |
-| Auto-layout 失效 | 配置不完整 | 检查 `layoutMode` 和对齐属性 |
-| **元素宽度只有 100px** | **`primaryAxisSizingMode: "FIXED"` 但没有 `width` 或 `layoutAlign`** | **添加 `layoutAlign: "STRETCH"` 或显式 `width`** |
-| **导入时报错 counterAxisAlignItems** | **使用了无效的 `"STRETCH"` 值** | **改为 `"MIN"` / `"CENTER"` / `"MAX"` / `"BASELINE"`** |
-| 子元素堆叠在左上角 | Auto-layout 未启用或配置错误 | 检查 `layoutMode` 和 sizing 模式 |
-| 颜色异常 | RGB 超出范围 | 使用 0-1 范围的浮点数 |
-| 路径解析失败 | 命令格式错误 | 确保命令后有空格 |
+| 问题 | 解决方案 |
+|------|---------|
+| 节点不显示 | 添加 `fills` 数组 |
+| VECTOR 空白 | 同时设置 `fillGeometry` 和 `vectorPaths` |
+| 文本不显示 | 使用 Inter 字体或预加载其他字体 |
+| 元素宽度只有 100px | 添加 `layoutAlign: "STRETCH"` 或显式 `width` |
+| 导入时报错 counterAxisAlignItems | 改为 `"MIN"` / `"CENTER"` / `"MAX"` / `"BASELINE"` |
 
-更多详细信息请参考 [faq-best-practices.md](references/faq-best-practices.md)。
+完整的故障排查指南请参考 [faq-best-practices.md](references/faq-best-practices.md)。
